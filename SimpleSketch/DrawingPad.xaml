@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="SimpleSketch.DrawingPad"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SimpleSketch"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Background="Black">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <InkCanvas x:Name="InkCanvas" Height="700" Margin="88,10,0,10" PointerPressed="InkCanvas_PointerPressed" PointerReleased="InkCanvas_PointerReleased"/>
+        <Grid HorizontalAlignment="Left" Height="574" Margin="10,10,0,0" VerticalAlignment="Top" Width="73">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0" Margin="12,17,0,28">
+                <Button x:Name="RedB" Background="Red" Height="50" Width="50" Click="RedB_Click_1"/>
+                <Button x:Name="GreenB" Background="Green" Height="50" Width="50" Click="GreenB_Click_1"/>
+                <Button x:Name="YelloB" Background="Yellow" Height="50" Width="50" Click="YelloB_Click_1"/>
+                <Button x:Name="BlueB" Background="Blue" Height="50" Width="50" Click="BlueB_Click_1"/>
+                <Button x:Name="BlackB" Background="Black" Height="50" Width="50" Click="BlackB_Click_1"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
