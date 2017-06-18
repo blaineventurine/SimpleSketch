@@ -9,22 +9,34 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <InkCanvas x:Name="InkCanvas" Height="700" Margin="88,10,0,10" PointerPressed="InkCanvas_PointerPressed" PointerReleased="InkCanvas_PointerReleased"/>
-        <Grid HorizontalAlignment="Left" Height="574" Margin="10,10,0,0" VerticalAlignment="Top" Width="73">
+        <Grid HorizontalAlignment="Left" Height="360" Margin="10,10,0,0" VerticalAlignment="Top" Width="73">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Grid.Column="0" Margin="12,17,0,28">
-                <Button x:Name="RedB" Background="Red" Height="50" Width="50" Click="RedB_Click_1"/>
+            <StackPanel Grid.Row="0" Grid.Column="0" Margin="10,10,10,10">
                 <Button x:Name="GreenB" Background="Green" Height="50" Width="50" Click="GreenB_Click_1"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,10,10,10">
+                <Button x:Name="RedB" Background="Red" Height="50" Width="50" Click="RedB_Click_1"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.Column="0" Margin="10,10,10,10">
                 <Button x:Name="YelloB" Background="Yellow" Height="50" Width="50" Click="YelloB_Click_1"/>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="0" Margin="10,10,10,10">
                 <Button x:Name="BlueB" Background="Blue" Height="50" Width="50" Click="BlueB_Click_1"/>
+            </StackPanel>
+            <StackPanel Grid.Row="4" Grid.Column="0" Margin="10,10,10,10">
                 <Button x:Name="BlackB" Background="Black" Height="50" Width="50" Click="BlackB_Click_1"/>
             </StackPanel>
         </Grid>
+        <Button x:Name="btnClear" Content="Clear" HorizontalAlignment="Left" Margin="10,610,10,10" VerticalAlignment="Top" Height="70" Width="70" Tapped="btnClear_Tapped"/>
     </Grid>
 </Page>

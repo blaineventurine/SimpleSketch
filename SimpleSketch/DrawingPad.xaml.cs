@@ -25,6 +25,7 @@ namespace SimpleSketch
     public sealed partial class DrawingPad : Page
     {
         private SolidColorBrush _brush = new SolidColorBrush(Colors.Black);
+        private InkPresenter presenter;
 
         public DrawingPad()
         {
@@ -60,16 +61,21 @@ namespace SimpleSketch
 
         private void InkCanvas_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            InkPresenter myPresenter = InkCanvas.InkPresenter;
-            myPresenter.InputDeviceTypes = Windows.UI.Core.CoreInputDeviceTypes.Pen | Windows.UI.Core.CoreInputDeviceTypes.Mouse | Windows.UI.Core.CoreInputDeviceTypes.Touch;
-            InkDrawingAttributes myAttributes = myPresenter.CopyDefaultDrawingAttributes();
-            myAttributes.Color = _brush.Color;
-            myAttributes.PenTip = PenTipShape.Circle;
-            myAttributes.Size = new Size(2, 6);
-            myPresenter.UpdateDefaultDrawingAttributes(myAttributes);
+            presenter.InputDeviceTypes = Windows.UI.Core.CoreInputDeviceTypes.Pen | Windows.UI.Core.CoreInputDeviceTypes.Mouse | Windows.UI.Core.CoreInputDeviceTypes.Touch;
+            InkDrawingAttributes attributes = presenter.CopyDefaultDrawingAttributes();
+            attributes.Color = _brush.Color;
+            attributes.PenTip = PenTipShape.Circle;
+            attributes.Size = new Size(2, 6);
+            presenter.UpdateDefaultDrawingAttributes(attributes);
+
         }
 
         private void InkCanvas_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            
+        }
+
+        private void btnClear_Tapped(object sender, TappedRoutedEventArgs e)
         {
             
         }
