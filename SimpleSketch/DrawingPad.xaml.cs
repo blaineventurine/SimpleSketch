@@ -24,60 +24,62 @@ namespace SimpleSketch
     /// </summary>
     public sealed partial class DrawingPad : Page
     {
-        private SolidColorBrush _brush = new SolidColorBrush(Colors.Black);
-        private InkPresenter presenter;
+        public DrawSettings DrawSettings = new DrawSettings();
+        
+        
 
         public DrawingPad()
         {
             this.InitializeComponent();
         }
-        
-        private void BlackB_Click_1(object sender, RoutedEventArgs e)
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _brush.Color = Colors.Black;
-           
+            DrawSettings.Init(display: ref InkCanvas, size: ref Size, color: ref BtnBlack);
         }
 
-        private void BlueB_Click_1(object sender, RoutedEventArgs e)
+        private void btnClear_Click(object sender, RoutedEventArgs e)
         {
-            _brush.Color = Colors.Blue;
+                        if (InkCanvas.InkPresenter.InputProcessingConfiguration.Mode == InkInputProcessingMode.Inking) 
+            {
+                InkCanvas.InkPresenter.InputProcessingConfiguration.Mode =
+                    InkInputProcessingMode.Erasing;
+            } 
+            else 
+            {
+                InkCanvas.InkPresenter.InputProcessingConfiguration.Mode =
+                    InkInputProcessingMode.Inking;
+            }
         }
 
-        private void YelloB_Click_1(object sender, RoutedEventArgs e)
+        private void Size_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _brush.Color = Colors.Yellow;
+            if (DrawSettings != null) DrawSettings.ChangeSize(ref InkCanvas, ref Size);
         }
 
-        private void GreenB_Click_1(object sender, RoutedEventArgs e)
+        private void BtnGreen_Click(object sender, RoutedEventArgs e)
         {
-            _brush.Color = Colors.Green;
-        
+            DrawSettings.ChangeColor(ref InkCanvas, ref BtnGreen);
         }
 
-        private void RedB_Click_1(object sender, RoutedEventArgs e)
+        private void BtnRed_Click(object sender, RoutedEventArgs e)
         {
-            _brush.Color = Colors.Red;
+            DrawSettings.ChangeColor(ref InkCanvas, ref BtnRed);
         }
 
-        private void InkCanvas_PointerPressed(object sender, PointerRoutedEventArgs e)
+        private void BtnYellow_Click(object sender, RoutedEventArgs e)
         {
-            presenter.InputDeviceTypes = Windows.UI.Core.CoreInputDeviceTypes.Pen | Windows.UI.Core.CoreInputDeviceTypes.Mouse | Windows.UI.Core.CoreInputDeviceTypes.Touch;
-            InkDrawingAttributes attributes = presenter.CopyDefaultDrawingAttributes();
-            attributes.Color = _brush.Color;
-            attributes.PenTip = PenTipShape.Circle;
-            attributes.Size = new Size(2, 6);
-            presenter.UpdateDefaultDrawingAttributes(attributes);
-
+            DrawSettings.ChangeColor(ref InkCanvas, ref BtnYellow);
         }
 
-        private void InkCanvas_PointerReleased(object sender, PointerRoutedEventArgs e)
+        private void BtnBlue_Click(object sender, RoutedEventArgs e)
         {
-            
+            DrawSettings.ChangeColor(ref InkCanvas, ref BtnBlue);
         }
 
-        private void btnClear_Tapped(object sender, TappedRoutedEventArgs e)
+        private void BtnBlack_Click(object sender, RoutedEventArgs e)
         {
-            
+            DrawSettings.ChangeColor(ref InkCanvas, ref BtnBlack);
         }
     }
 }
